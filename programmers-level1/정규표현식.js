@@ -1,7 +1,7 @@
 function solution(s) {
   // regex slash(/)사이에 감싸기.
   // test(): 해당 문자열에 패턴이 있으면 true 반환
-  // arr.includes(length): 길이가 4,6인지 확인
+  // arr.includes(length)로 길이가 4,6인지 확인
   return /^[0-9]+$/.test(s) && [4, 6].includes(s.length);
 }
 
