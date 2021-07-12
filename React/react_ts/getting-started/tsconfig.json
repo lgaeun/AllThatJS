@@ -1,9 +1,0 @@
-{
-    "compilerOptions": {
-        "allowJs": true, //js 허용 
-        "checkJs": true, //@ts-check 허용
-        "noImplicitAny": true, //모든 타입에 대해서 최소한 'any'라는 타입을 넣어야함
-        "target": "ES6"
-    },
-    
-}
