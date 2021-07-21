@@ -2,9 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 import './Button.scss';
 
-function Button({children, size, color, outline}){
+function Button({children, size, color, outline, fullWidth}){
     //클래스 이름에 CSS클래스 이름 동적으로 넣어주기
-    return <button className={classNames('Button', size, color, {outline})}>{children}</button>
+    return <button className={classNames('Button', size, color, {outline, fullWidth})}>{children}</button>
 }
 
 Button.defaultProps = {

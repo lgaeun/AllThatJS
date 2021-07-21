@@ -67,6 +67,16 @@ $pink: #f06595;
         @include button-color(($pink));
     }
 
+    //fullWidth option
+    &.fullWidth{
+        width:100%;
+        justify-content: center;
+        & + & {
+            margin-left: 0;
+            margin-top: 1rem;
+        }
+    }
+
 
     // background-color: $blue; //주석 사용 
     // &:hover{
