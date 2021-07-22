@@ -35,3 +35,6 @@ export default CheckBox;
 //     condition: true
 // })
 // - cx('my-component', ['another', 'classnames'])
+
+// css module은 Sass에서도 사용할 수 있음 (그냥 확장자를 .module.scss)
+// 그 전에 node-sass 설치해야 함
