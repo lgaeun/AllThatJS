@@ -1,23 +1,13 @@
-interface PhoneNumberDictionary {
-  [phone: string]: {
-    num: number;
-  };
-}
-
-interface Contact {
-  name: string;
-  address: string;
-  phones: PhoneNumberDictionary;
-}
+import { Contact, PhoneNumberDictionary, PhoneType } from "./types";
 
 // api
 // TODO: 아래 함수의 반환 타입을 지정해보세요.
-function fetchContacts() {
+function fetchContacts(): Promise<Contact[]> {
   // TODO: 아래 변수의 타입을 지정해보세요.
-  const contacts = [
+  const contacts: Contact[] = [
     {
-      name: 'Tony',
-      address: 'Malibu',
+      name: "Tony",
+      address: "Malibu",
       phones: {
         home: {
           num: 11122223333,
@@ -28,8 +18,8 @@ function fetchContacts() {
       },
     },
     {
-      name: 'Banner',
-      address: 'New York',
+      name: "Banner",
+      address: "New York",
       phones: {
         home: {
           num: 77788889999,
@@ -37,8 +27,8 @@ function fetchContacts() {
       },
     },
     {
-      name: '마동석',
-      address: '서울시 강남구',
+      name: "마동석",
+      address: "서울시 강남구",
       phones: {
         home: {
           num: 213423452,
@@ -49,7 +39,7 @@ function fetchContacts() {
       },
     },
   ];
-  return new Promise(resolve => {
+  return new Promise((resolve) => {
     setTimeout(() => resolve(contacts), 2000);
   });
 }
@@ -57,45 +47,58 @@ function fetchContacts() {
 // main
 class AddressBook {
   // TODO: 아래 변수의 타입을 지정해보세요.
-  contacts = [];
+  contacts: Contact[] = [];
 
   constructor() {
     this.fetchData();
+    // this.findContactByPhone(PhoneType.Home);
   }
 
-  fetchData() {
-    fetchContacts().then(response => {
+  fetchData(): void {
+    fetchContacts().then((response) => {
       this.contacts = response;
     });
   }
 
   /* TODO: 아래 함수들의 파라미터 타입과 반환 타입을 지정해보세요 */
-  findContactByName(name) {
-    return this.contacts.filter(contact => contact.name === name);
+  findContactByName(name: string): Contact[] {
+    return this.contacts.filter((contact) => contact.name === name);
   }
 
-  findContactByAddress(address) {
-    return this.contacts.filter(contact => contact.address === address);
+  findContactByAddress(address: string): Contact[] {
+    return this.contacts.filter((contact) => contact.address === address);
   }
 
-  findContactByPhone(phoneNumber, phoneType: string) {
+  findContactByPhone(phoneNumber: number, phoneType: PhoneType): Contact[] {
     return this.contacts.filter(
-      contact => contact.phones[phoneType].num === phoneNumber
+      (contact) => contact.phones[phoneType].num === phoneNumber
     );
   }
 
-  addContact(contact) {
+  addContact(contact: Contact): void {
     this.contacts.push(contact);
   }
 
-  displayListByName() {
-    return this.contacts.map(contact => contact.name);
+  displayListByName(): string[] {
+    return this.contacts.map((contact) => contact.name);
   }
 
-  displayListByAddress() {
-    return this.contacts.map(contact => contact.address);
+  displayListByAddress(): string[] {
+    return this.contacts.map((contact) => contact.address);
   }
   /* ------------------------------------------------ */
 }
+
+var div = document.querySelector("div");
+// 타입추론으로 Element | null 이기 때문에, 아래처럼 null이 아님을 확인하고 innerText를 쓸 수 있다.
+if (div) {
+  div.innerText;
+}
+//위와 같은 코드임
+div?.innerHTML;
+
+// 또는 타입단언으로 타입을 설정하면 바로 innerHTML 속성에 접근 할 수 있다.
+let div1 = document.querySelector(".container") as HTMLDivElement;
+div1.innerHTML;
 
 new AddressBook();
