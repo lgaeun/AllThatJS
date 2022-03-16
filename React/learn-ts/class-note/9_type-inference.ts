@@ -28,3 +28,7 @@ var detailedItem: DetailedDropdown<number> = {
 
 // Best Common Type
 var arr = [1, 2, true, "a"];
+
+let func: (a: string, b: number) => string = function (str, times): string {
+  return str.repeat(times);
+};
