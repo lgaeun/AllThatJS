@@ -1,5 +1,5 @@
 // utils
-function $(selector: any) {
+function $(selector: string) {
   return document.querySelector(selector);
 }
 function getUnixTimestamp(date: string | Date | number) {
@@ -7,9 +7,9 @@ function getUnixTimestamp(date: string | Date | number) {
 }
 
 // DOM
-const confirmedTotal = $(".confirmed-total");
-const deathsTotal = $(".deaths");
-const recoveredTotal = $(".recovered");
+const confirmedTotal = $(".confirmed-total") as HTMLSpanElement;
+const deathsTotal = $(".deaths") as HTMLParagraphElement;
+const recoveredTotal = $(".recovered") as HTMLParagraphElement;
 const lastUpdatedTime = $(".last-updated-time");
 const rankList = $(".rank-list");
 const deathsList = $(".deaths-list");
