@@ -198,7 +198,8 @@ async function setupData() {
 }
 
 function renderChart(data: number[], labels: string[]) {
-  const ctx = $('#lineChart').getContext('2d');
+  const lineChart = $('#lineChart') as HTMLCanvasElement;
+  const ctx = lineChart.getContext('2d');
   Chart.defaults.global.defaultFontColor = '#f5eaea';
   Chart.defaults.global.defaultFontFamily = 'Exo 2';
   new Chart(ctx, {
