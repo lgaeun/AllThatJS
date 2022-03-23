@@ -5,7 +5,8 @@
     "outDir": "./built",
     "moduleResolution": "Node", //Promise를 인식시키기 위해
     "lib": ["ES2015", "DOM", "DOM.Iterable"],
-    "noImplicitAny": true
+    "noImplicitAny": true,
+    "typeRoots": ["./node_modules/@types", "./types"]
   },
   "include": ["./src/**/*"] //src폴더 내의 모든 파일을 대상으로 컴파일하겠다.
 }
