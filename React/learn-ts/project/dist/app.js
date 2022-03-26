@@ -40,7 +40,8 @@ var axios_1 = require("axios");
 var Chart = require("chart.js");
 // utils
 function $(selector) {
-    return document.querySelector(selector);
+    var element = document.querySelector(selector);
+    return element;
 }
 function getUnixTimestamp(date) {
     return new Date(date).getTime();
@@ -98,17 +99,21 @@ function startApp() {
 }
 // events
 function initEvents() {
+    if (!rankList) {
+        return;
+    }
     rankList.addEventListener('click', handleListClick);
 }
 function handleListClick(event) {
+    var _a;
     return __awaiter(this, void 0, void 0, function () {
         var selectedId, deathResponse, recoveredResponse, confirmedResponse;
-        return __generator(this, function (_a) {
-            switch (_a.label) {
+        return __generator(this, function (_b) {
+            switch (_b.label) {
                 case 0:
                     if (event.target instanceof HTMLParagraphElement ||
                         event.target instanceof HTMLSpanElement) {
-                        selectedId = event.target.parentElement.id;
+                        selectedId = (_a = event.target.parentElement) === null || _a === void 0 ? void 0 : _a.id;
                     }
                     if (event.target instanceof HTMLLIElement) {
                         selectedId = event.target.id;
@@ -122,13 +127,13 @@ function handleListClick(event) {
                     isDeathLoading = true;
                     return [4 /*yield*/, fetchCountryInfo(selectedId, CovidStatus.Deaths)];
                 case 1:
-                    deathResponse = (_a.sent()).data;
+                    deathResponse = (_b.sent()).data;
                     return [4 /*yield*/, fetchCountryInfo(selectedId, CovidStatus.Recovered)];
                 case 2:
-                    recoveredResponse = (_a.sent()).data;
+                    recoveredResponse = (_b.sent()).data;
                     return [4 /*yield*/, fetchCountryInfo(selectedId, CovidStatus.Confirmed)];
                 case 3:
-                    confirmedResponse = (_a.sent()).data;
+                    confirmedResponse = (_b.sent()).data;
                     endLoadingAnimation();
                     setDeathsList(deathResponse);
                     setTotalDeathsByCountry(deathResponse);
@@ -155,11 +160,13 @@ function setDeathsList(data) {
         p.textContent = new Date(value.Date).toLocaleDateString().slice(0, -1);
         li.appendChild(span);
         li.appendChild(p);
-        deathsList.appendChild(li);
+        deathsList === null || deathsList === void 0 ? void 0 : deathsList.appendChild(li);
     });
 }
 function clearDeathList() {
-    deathsList.innerHTML = null;
+    if (!deathsList)
+        return;
+    deathsList.innerHTML = '';
 }
 function setTotalDeathsByCountry(data) {
     deathsTotal.innerText = data[0].Cases.toString();
@@ -178,22 +185,24 @@ function setRecoveredList(data) {
         p.textContent = new Date(value.Date).toLocaleDateString().slice(0, -1);
         li.appendChild(span);
         li.appendChild(p);
-        recoveredList.appendChild(li);
+        recoveredList === null || recoveredList === void 0 ? void 0 : recoveredList.appendChild(li);
     });
 }
 function clearRecoveredList() {
-    recoveredList.innerHTML = null;
+    if (!recoveredList)
+        return;
+    recoveredList.innerHTML = '';
 }
 function setTotalRecoveredByCountry(data) {
     recoveredTotal.innerText = data[0].Cases.toString();
 }
 function startLoadingAnimation() {
-    deathsList.appendChild(deathSpinner);
-    recoveredList.appendChild(recoveredSpinner);
+    deathsList === null || deathsList === void 0 ? void 0 : deathsList.appendChild(deathSpinner);
+    recoveredList === null || recoveredList === void 0 ? void 0 : recoveredList.appendChild(recoveredSpinner);
 }
 function endLoadingAnimation() {
-    deathsList.removeChild(deathSpinner);
-    recoveredList.removeChild(recoveredSpinner);
+    deathsList === null || deathsList === void 0 ? void 0 : deathsList.removeChild(deathSpinner);
+    recoveredList === null || recoveredList === void 0 ? void 0 : recoveredList.removeChild(recoveredSpinner);
 }
 function setupData() {
     return __awaiter(this, void 0, void 0, function () {
@@ -268,7 +277,7 @@ function setCountryRanksByConfirmedCases(data) {
         p.textContent = value.Country;
         li.appendChild(span);
         li.appendChild(p);
-        rankList.appendChild(li);
+        rankList === null || rankList === void 0 ? void 0 : rankList.appendChild(li);
     });
 }
 function setLastUpdatedTimestamp(data) {
